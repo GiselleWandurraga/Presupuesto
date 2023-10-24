@@ -1,0 +1,134 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    margin: 0;
+    padding: 0;
+    background-color: rgb(247, 200, 174);
+
+}
+
+.contenedor{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
+}
+
+.subcont1{
+    background-color: rgb(247, 200, 174);
+    height: 200px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.titulo{
+    font-size: 60px;
+    color: black;
+    font-weight: 10
+
+}
+
+.subcont2{
+    height: auto;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    border: 6px solid green;
+    background-color: white;
+    border-radius: 20px;
+
+
+}
+
+.bloque1{
+    background-color: white;
+    height:auto;
+    width: 50%;
+    display: flex;
+    padding: 0 50px;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 20px;
+
+
+}
+.info_bloq1{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    } 
+.tit_bloq{
+    font-size: 40px;
+    color: rgba(161, 157, 157, 0.873);
+    font-weight: 10;
+    margin-bottom: 60px;   
+}
+.titulos{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px;
+}
+
+
+.bloque1 input[type="text"],
+.bloque1 input[type="number"]{
+    padding: 20px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 20px;
+}
+.bloque1 label {
+    display: block;
+    font-size: 30px;
+    margin-bottom: 25px;
+    color: black;
+    font-family:'Times New Roman', Times, serif;
+
+}
+#boton{
+    background-color: blue;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    font-size: 25px;
+    width: 20%;
+    margin-bottom:100px; 
+}
+
+.bloque2{
+    background-color:white;
+    height: auto;
+    width: 50%;
+    display: flex;
+    border-radius: 20px;
+    flex-direction: column;
+    padding: 0 50px;
+
+}
+ .presupuesto{
+    height: 100px;
+    background-color: rgb(99, 148, 218);
+    border: 1px solid blue;
+    border-radius: 10px;
+ }
+ .restante{
+    height: 100px;
+    background-color: rgb(212, 133, 133);
+    border: 1px solid red; 
+    border-radius: 10px;
+ }
+
+ .info_bloq1{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    } 
