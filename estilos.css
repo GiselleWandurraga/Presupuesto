@@ -5,7 +5,30 @@
 body{
     margin: 0;
     padding: 0;
-    background-color: rgb(247, 200, 174);
+    background: linear-gradient(to bottom, rgb(81, 191, 243), rgb(161, 212, 226));
+}
+
+.presupuesto_inicial{
+margin-top: 20px;
+width: 100%;
+display: flex;
+justify-content: center;
+
+}
+.contenedor input[type="number"]{
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 20px;
+    width: 20%;
+    margin-right: 15px;
+}
+.button_presupuesto{
+    background-color: rgb(19, 0, 128);
+    color: #fff;
+    padding: 10px;
+    font-size: 18px;
 
 }
 
@@ -18,7 +41,7 @@ body{
 }
 
 .subcont1{
-    background-color: rgb(247, 200, 174);
+    
     height: 200px;
     margin-bottom: 15px;
     display: flex;
@@ -28,7 +51,7 @@ body{
 }
 
 .titulo{
-    font-size: 60px;
+    font-size: 50px;
     color: black;
     font-weight: 10
 
@@ -42,6 +65,7 @@ body{
     border: 6px solid green;
     background-color: white;
     border-radius: 20px;
+    margin-bottom: 50px
 
 
 }
@@ -63,7 +87,7 @@ body{
     grid-template-columns: repeat(1, 1fr);
     } 
 .tit_bloq{
-    font-size: 40px;
+    font-size:30px;
     color: rgba(161, 157, 157, 0.873);
     font-weight: 10;
     margin-bottom: 60px;   
@@ -76,17 +100,19 @@ body{
 }
 
 
-.bloque1 input[type="text"],
-.bloque1 input[type="number"]{
+.info_bloq1 input[type="text"],
+.info_bloq1 input[type="number"]{
     padding: 20px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 20px;
+    width: 80%;
 }
+
 .bloque1 label {
     display: block;
-    font-size: 30px;
+    font-size: 20px;
     margin-bottom: 25px;
     color: black;
     font-family:'Times New Roman', Times, serif;
@@ -100,7 +126,7 @@ body{
     margin-top: 20px;
     display: flex;
     justify-content: center;
-    font-size: 25px;
+    font-size: 15px;
     width: 20%;
     margin-bottom:100px; 
 }
@@ -109,10 +135,13 @@ body{
     background-color:white;
     height: auto;
     width: 50%;
-    display: flex;
-    border-radius: 20px;
+    display:flex;
     flex-direction: column;
+    border-radius: 20px;
     padding: 0 50px;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
 
 }
  .presupuesto{
@@ -128,7 +157,3 @@ body{
     border-radius: 10px;
  }
 
- .info_bloq1{
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    } 

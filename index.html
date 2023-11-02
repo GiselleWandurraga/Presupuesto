@@ -6,12 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./estilos.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./javascript.js"></script>
 </head>
 
 <body>
-    <div class="contenedor">
 
+    <div class="contenedor">
+        <div class="presupuesto_inicial">
+            <input type="number" id="p_inicial" placeholder="Ingrese el presupuesto Inicial:">
+            <button class="button_presupuesto" onclick="inicializarPresupuesto()">Aceptar</button>
+        </div>
         <div class="subcont1">
             <h1 class="titulo">Gasto Semanal</h1>
         </div>
@@ -21,37 +26,29 @@
                     <h1 class="tit_bloq"> Añade tus gastos aquí </h1>
                 </div>
                 <div class="info_bloq1">
-                    <div class="alerta"></div>
-                    <div class="alerta"></div>
                     <label for="n">Gasto:</label>
                     <input type="text" id="gasto" name="gasto" placeholder="Nombre del gasto" required>
                     <label for="n">Cantidad:</label>
                     <input type="number" id="cantidad" name="cantidad" placeholder="Costo del gasto" required>
                     <input type="button" value="Agregar" id="boton">
                 </div>
-
             </div>
             <div class="bloque2">
                 <div class="titulos">
                     <h1 class="tit_bloq"> Listado </h1>
                 </div>
-                <div class="info_bloq2">
-                    <div class="card">
-                        <div class="objeto"></div>
-                        <div class="precio"></div>
-                        <div class="borrar"></div>
-                    </div>
-                    <div class="presupuesto"></div>
-                    <br>
-                    <div class="restante"></div>
-
+                <div class="tarjetas-contenedor"></div>
+                <div class="presupuesto">
+                    <p class="textolis">Presupuesto Inicial: $0</p>
                 </div>
-                
+                <div class="restante">
+                    <p class="textolis">Restante: $ </p>
+                </div>
             </div>
         </div>
-
     </div>
 
 </body>
 
 </html>
+
