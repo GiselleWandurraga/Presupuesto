@@ -7,6 +7,41 @@ body{
     padding: 0;
     background: linear-gradient(to bottom, rgb(81, 191, 243), rgb(161, 212, 226));
 }
+.alert-container {
+    display: none; /* Oculta la alerta inicialmente */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(134, 181, 248);
+    padding: 5px;
+    border: 2px solid blue;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    width: 300px;
+    color: black;
+   
+}
+
+
+.alert-content {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.alert-buttons {
+    text-align: right;
+}
+
+.alert-button {
+    padding: 5px 10px;
+    background-color: blue;
+    font-weight: 800;
+    border: none;
+    border-radius: 5px;
+    margin-left: 10px;
+    cursor: pointer;
+    margin-top:3%;}
 
 .presupuesto_inicial{
 margin-top: 20px;
@@ -62,7 +97,7 @@ justify-content: center;
     width: 80%;
     display: flex;
     flex-direction: row;
-    border: 6px solid green;
+    border: 6px solid blue;
     background-color: white;
     border-radius: 20px;
     margin-bottom: 50px
@@ -73,7 +108,7 @@ justify-content: center;
 .bloque1{
     background-color: white;
     height:auto;
-    width: 50%;
+    width: 100%;
     display: flex;
     padding: 0 50px;
     flex-direction: column;
@@ -90,7 +125,7 @@ justify-content: center;
     font-size:30px;
     color: rgba(161, 157, 157, 0.873);
     font-weight: 10;
-    margin-bottom: 60px;   
+ 
 }
 .titulos{
     display: flex;
@@ -134,7 +169,7 @@ justify-content: center;
 .bloque2{
     background-color:white;
     height: auto;
-    width: 50%;
+    width: 100%;
     display:flex;
     flex-direction: column;
     border-radius: 20px;
@@ -144,16 +179,72 @@ justify-content: center;
     align-items: center;
 
 }
- .presupuesto{
+ .cuadros_text{
     height: 100px;
     background-color: rgb(99, 148, 218);
     border: 1px solid blue;
     border-radius: 10px;
+    width: 100%;
+    display: flex;  
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: black;
  }
- .restante{
+ .cuadros_text_2{
     height: 100px;
     background-color: rgb(212, 133, 133);
     border: 1px solid red; 
     border-radius: 10px;
+    margin-bottom: 35px;
+    width: 100%;
+    font-size: 20px;
+    color: black;
+    display: flex;  
+    align-items: center;
+    justify-content: center;
+
  }
+
+
+ .card{
+    width: 80%;
+ }
+
+.cards{
+display: flex;
+justify-content: space-between;
+border: 2px solid red;
+border-radius: 10px;
+padding: 10px;
+margin-bottom: 10px;
+}
+.objeto, .precio, .borrar{
+margin: 0 4%;
+display: flex;
+align-items: center;
+}
+.cuadros_text{
+    width: 100% ;
+}
+.cuadros_text_2{
+    width: 100% ;
+}
+.btn_borrar{
+    padding: 5px;
+    background-color: rgb(79, 79, 226);
+    color: white;
+    border: 1px solid rgb(79, 79, 226);
+    border-radius: 5px;
+}
+.borrar{
+    background-color: red;
+    color: #fff;
+    padding: 2px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    font-size: 15px;
+    cursor: pointer;
+}
 

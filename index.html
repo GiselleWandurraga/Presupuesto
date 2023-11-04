@@ -6,16 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./estilos.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./javascript.js"></script>
 </head>
 
 <body>
+    <div class="alert-container" id="alert">
 
+        <div id="alert-content"></div>
+        <div class="alert-buttons">
+            <button class="alert-button" onclick="closeAlert()">Aceptar</button>
+
+        </div>
+    </div>
+
+
+    <div class="contenedor_alert">
+        <h1 id="alert"></h1>
+    </div>
     <div class="contenedor">
         <div class="presupuesto_inicial">
-            <input type="number" id="p_inicial" placeholder="Ingrese el presupuesto Inicial:">
-            <button class="button_presupuesto" onclick="inicializarPresupuesto()">Aceptar</button>
+
+            <input type="text" id="p_inicial" placeholder="Ingrese el presupuesto Inicial:">
+
+            <button class="button_presupuesto" onclick="iniciar_presupuesto()">Aceptar</button>
         </div>
         <div class="subcont1">
             <h1 class="titulo">Gasto Semanal</h1>
@@ -29,26 +42,35 @@
                     <label for="n">Gasto:</label>
                     <input type="text" id="gasto" name="gasto" placeholder="Nombre del gasto" required>
                     <label for="n">Cantidad:</label>
-                    <input type="number" id="cantidad" name="cantidad" placeholder="Costo del gasto" required>
-                    <input type="button" value="Agregar" id="boton">
+                    <input type="text" id="cantidad" name="cantidad" placeholder="Costo del gasto" required>
+                    <input type="button" value="Agregar" id="boton" onclick="registrar()">
                 </div>
+
             </div>
+
             <div class="bloque2">
                 <div class="titulos">
                     <h1 class="tit_bloq"> Listado </h1>
                 </div>
-                <div class="tarjetas-contenedor"></div>
-                <div class="presupuesto">
-                    <p class="textolis">Presupuesto Inicial: $0</p>
+                <div class="card" id="card">
                 </div>
-                <div class="restante">
-                    <p class="textolis">Restante: $ </p>
+                <div class="cuadros_text">
+                    <h3 class="presupuesto">Presupuesto:<span id="presupuesto"></span></h3>
+                </div>
+                <div class="cuadros_text_2">
+                    <h3 class="restante">Saldo:<span id="saldo"></span></h3>
                 </div>
             </div>
         </div>
     </div>
 
+
+
+    </div>
+    </div>
+
+    </div>
+
 </body>
 
 </html>
-

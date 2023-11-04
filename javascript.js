@@ -1,136 +1,104 @@
-document.addEventListener('DOMContentLoaded', function () {
-   
-  
-    function mostrarAlertaPresupuesto() {
-      Swal.fire({
-        title: '¡Bienvenido!',
-        text: 'Por favor, ingresa tu presupuesto:',
-        input: 'text',
-        inputPlaceholder: 'Ingresa tu presupuesto',
-        confirmButtonText: 'Aceptar',
-        allowOutsideClick: false,
-        allowEscapeKey: false,
-        allowEnterKey: false,
-        stopKeydownPropagation: false,
-      }).then((result) => {
-        if (result.isConfirmed && result.value) {
-          const presupuesto = parseFloat(result.value);
-  
-          if (!isNaN(presupuesto) && presupuesto > 0) {
-            inicializarPresupuesto(presupuesto);
-          } else {
-            mostrarAlertaPresupuesto(); // Llama nuevamente a la función si el presupuesto no es válido
-          }
+let presupuesto_i = 0
+let saldo_restante = 0
+
+function moneda(valor) {
+    return valor.toLocaleString('es-ES', {
+        style: 'currency',
+        currency: 'COL',
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
+}
+function showAlert() {
+  document.getElementById('alert').style.display = 'block';
+}
+
+function closeAlert() {
+  document.getElementById('alert').style.display = 'none';
+}
+function iniciar_presupuesto() {
+    presupuesto_i = parseFloat(document.getElementById("p_inicial").value)
+
+    if (presupuesto_i > 0) {
+        document.getElementById("presupuesto").textContent = moneda(presupuesto_i)
+        saldo_restante = presupuesto_i
+        document.getElementById("saldo").textContent = moneda(saldo_restante)
+        document.querySelector(".cuadros_text_2").style.backgroundColor = "green"
+    }
+    else {
+        document.getElementById("alert-content").textContent = "Ingrese un presupuesto válido"
+        showAlert() 
+    }
+}
+function registrar() {
+    let nuevo_gasto = document.getElementById("gasto").value
+    let nueva_cantidad = parseFloat(document.getElementById("cantidad").value)
+
+    if (nuevo_gasto !== "" && nueva_cantidad > 0) {
+        if (nueva_cantidad <= saldo_restante) {
+            const cont_cards = document.getElementById("card")
+            const card = document.createElement("div")
+            card.className = "cards"
+            card.innerHTML = `
+    <div class ="objeto">${nuevo_gasto}</div>
+    <div class ="precio">${moneda(nueva_cantidad)}</div>
+    <div class ="borrar_cont">
+    <button class="borrar" onclick="borrar_item(this, ${nueva_cantidad})">Borrar</button>
+    </div>
+    `;
+
+            cont_cards.appendChild(card)
+            saldo_restante -= nueva_cantidad
+            document.getElementById("saldo").textContent = moneda(saldo_restante);
+            document.getElementById("gasto").value = "";
+            document.getElementById("cantidad").value = "";
+
+            if (saldo_restante < presupuesto_i * 0.2) {
+                document.querySelector(".cuadros_text_2").style.backgroundColor = "red"
+            }
+            if (saldo_restante < 0) {
+                document.querySelector("#boton").disabled = true
+                document.getElementById("alert-content").textContent = "Sin presupuesto"
+                showAlert() 
+
+            }
+            else {
+                document.querySelector("#boton").disabled = false
+            }
         }
-      });
-    }
-    function inicializarPresupuesto(presupuesto) {
-        const presupuestoLabel = document.querySelector('.presupuesto p');
-        presupuestoLabel.textContent = `Presupuesto Inicial: ${formatearComoMoneda(presupuesto)}`;
-
-        const restanteLabel = document.querySelector('.restante p');
-        restanteLabel.textContent = `Restante: ${formatearComoMoneda(presupuesto)}`;
-
-        presupuestoTotal = parseFloat(presupuesto);
-        saldoRestante = parseFloat(presupuesto);
-    }
-
-    function mostrarTarjetas() {
-        const tarjetasContenedor = document.querySelector('.tarjetas-contenedor');
-        tarjetasContenedor.innerHTML = '';
-
-        listaGastos.forEach((gasto, index) => {
-            const tarjeta = document.createElement('div');
-            tarjeta.classList.add('tarjeta');
-            tarjeta.innerHTML = `<p>${gasto.nombre}: ${formatearComoMoneda(gasto.cantidad)}</p>`;
-
-            cellNombre.innerHTML = gasto.nombre;
-            cellCantidad.innerHTML = formatearComoMoneda(gasto.cantidad);
-
-            const botonBorrar = document.createElement('button');
-            botonBorrar.textContent = 'Borrar';
-            botonBorrar.className = 'boton-borrar';
-            botonBorrar.addEventListener('click', () => borrarGasto(index));
-
-            cellBoton.appendChild(botonBorrar);
-        });
-    }
-
-    function borrarGasto(index) {
-        const gastoABorrar = listaGastos[index];
-        saldoRestante += gastoABorrar.cantidad;
-        listaGastos.splice(index, 1);
-        mostrarTarjetas();
-        actualizarSaldo();
-        mostrarAlerta('¡Gasto Borrado!', 'El gasto se ha borrado correctamente.');
-    }
-
-    function actualizarSaldo() {
-        const saldoLabel = document.querySelector('.restante p');
-        saldoLabel.textContent = `Restante: ${formatearComoMoneda(saldoRestante)}`;
-
-        const porcentajeRestante = (saldoRestante / presupuestoTotal) * 100;
-
-        saldoLabel.style.color = porcentajeRestante <= 20 ? 'red' : 'green';
-    }
-
-    function validar() {
-        const nombre = document.getElementById('gasto').value.trim();
-        const cantidad = document.getElementById('cantidad').value.trim();
-
-        if (nombre !== '' && cantidad !== '') {
-            const cantidadNumerica = parseFloat(cantidad.replace(/[^\d.]/g, ''));
-
-            if (isNaN(cantidadNumerica) || cantidadNumerica <= 0) {
-                mostrarAlerta('Error', 'Por favor, ingresa una cantidad válida.');
-                return;
-            }
-
-            if (cantidadNumerica > saldoRestante) {
-                mostrarAlerta('Error', 'No tienes suficiente saldo para este gasto.');
-                return;
-            }
-
-            listaGastos.push({ nombre, cantidad: cantidadNumerica });
-            saldoRestante -= cantidadNumerica;
-
-            mostrarTarjetas();
-            actualizarSaldo();
-
-            document.getElementById('gasto').value = '';
-            document.getElementById('cantidad').value = '';
-
-            mostrarAlerta('¡Gasto Agregado!', 'El gasto se ha agregado correctamente.');
-
-            if (saldoRestante <= 0) {
-                mostrarAlerta('¡Presupuesto Agotado!', 'El presupuesto se ha agotado.');
-            }
-        } else {
-            mostrarAlerta('Error', 'Por favor, ingresa el nombre y la cantidad del gasto.');
+        else {
+            document.getElementById("alert-content").textContent = "!No cuenta con el presupuesto suficiente para realizar este gasto¡"
+            showAlert() 
         }
     }
-
-    function mostrarAlerta(titulo, mensaje) {
-        Swal.fire({
-            icon: 'info',
-            title: titulo,
-            text: mensaje,
-        });
+    else if (nuevo_gasto === "") {
+        document.getElementById("alert-content").textContent = "Ingrese el nombre del gasto"
+        showAlert() 
     }
-
-    function formatearComoMoneda(valor) {
-        const formatoMoneda = new Intl.NumberFormat('es-AR', {
-            style: 'currency',
-            currency: 'ARS',
-        });
-        return formatoMoneda.format(valor);
+    else {
+        document.getElementById("alert-content").textContent = "Ingrese un precio válido"
+        showAlert() 
     }
+}
+function borrar_item(button, cantidad) {
+    button.parentElement.parentElement.remove();
+    saldo_restante+=cantidad;
+    document.getElementById("saldo").textContent=moneda(saldo_restante);
 
-    // Mostrar alerta para ingresar el presupuesto al cargar la página
-    mostrarAlertaPresupuesto();
+    if (saldo_restante <= 0) {
+        document.querySelector("#boton").disabled = true
+        document.getElementById("alert-content").textContent = "Sin presupuesto"
+        showAlert() 
 
-    // Evento click para el botón Agregar
-    const botonAgregar = document.getElementById('boton');
-    botonAgregar.addEventListener('click', validar);
-});
+    }
+    else {
+        document.querySelector("#boton").disabled = false
+    }
+    if (saldo_restante < presupuesto_i * 0.2) {
+        document.querySelector(".cuadros_text_2").style.backgroundColor = "red"
+    }
+    else{
+        document.querySelector(".cuadros_text_2").style.backgroundColor = "green"
+    }
+}
 
